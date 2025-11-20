@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { json } from 'body-parser';
 import authRoutes from './routes/authRoutes';
 
@@ -11,7 +11,7 @@ app.use(json());
 app.use('/api/auth', authRoutes);
 
 // Error handling
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
